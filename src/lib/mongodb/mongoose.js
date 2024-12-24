@@ -10,6 +10,7 @@ export const connect = async () => {
         return;
     }
     try {
+        console.log(process.env.MONGODB_URI)
         await mongoose.connect(process.env.MONGODB_URI, {
             dbName: 'Next-estate',
             useNewurlParser: true,

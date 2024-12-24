@@ -1,5 +1,5 @@
 import User from '../models/user.model.js';
-import {connect   } from '../mongodb/mongoose.js';
+import { connect   } from '../mongodb/mongoose.js';
 
 export const createOrUpdateUser = async (
     id,
@@ -9,7 +9,9 @@ export const createOrUpdateUser = async (
     email_addresses,
 ) => {
     try {
+        console.log(11111)
         await connect();
+        console.log(22222)
         const user = await User.findOneAndUpdate(
             {clerkId: id},
             {

@@ -1,6 +1,6 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
-import { createOrUpdateUser, deleteUser } from '@/lib/actions/user'
+import { createOrUpdateUser, deleteUser } from '@/lib/actions/user.js'
 import { clerkClient } from '@clerk/nextjs/server'
 
 export async function POST(req) {
@@ -61,6 +61,7 @@ export async function POST(req) {
             email_addresses
         );
         if(user && eventType === 'user.created'){
+            console.log('user.created')
             try {
                 await clerkClient.users.updateUserMetadata(id,{
                     publicMetadata: {
@@ -79,6 +80,7 @@ export async function POST(req) {
     }
  }
  if(eventType === 'user.deleted'){
+    console.log('user.deleted')
     try {
         await deleteUser(id)
     } catch (error) {
